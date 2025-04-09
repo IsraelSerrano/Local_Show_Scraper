@@ -25,7 +25,7 @@ def main():
 
     driver = webdriver.Chrome(options=chrome_options)
 
-    login(driver)
+    # login(driver)
 
     with open("captions.txt", "w", encoding="utf-8") as file:
         for post_url in posts.values():
@@ -38,11 +38,13 @@ def main():
     driver.quit()
 
 def get_post_data(driver, post_url):
-    time.sleep(8)
     driver.get(post_url)
-    time.sleep(5)
-    caption_element = driver.find_element(By.XPATH, "/html/body/div[1]/div/div/div[2]/div/div/div[1]/div[1]/div[1]/section/main/div/div[1]/div/div[2]/div/div[2]/div/div[1]/div/div[2]/div/span/div/span")
 
+    time.sleep(5)    
+    input()
+    caption_element = driver.find_element(By.XPATH, "/html/body/div[1]/div/div/div[2]/div/div/div[1]/div[1]/div[1]/section/main/div[2]/div[1]/article/div/div[2]/div/div[2]/div[1]/ul/div[1]/li/div/div/div[2]")
+
+    
     # Extract and print the caption text
     caption_text = caption_element.text
     return caption_text
@@ -63,7 +65,6 @@ def login(driver):
 
     username.send_keys(username_value)
     password.send_keys(password_value)
-    time.sleep(3)
     log_in = WebDriverWait(driver, 15).until(EC.element_to_be_clickable((By.CSS_SELECTOR, "button[type=submit]"))).click()
 
 
