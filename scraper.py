@@ -23,7 +23,6 @@ def main():
     chrome_options = Options()
     # chrome_options.add_argument("--headless")  # Run in headless mode
 
-    # Path to your ChromeDriver (update this path if necessary)
     driver = webdriver.Chrome(options=chrome_options)
 
     login(driver)
@@ -64,7 +63,7 @@ def login(driver):
 
     username.send_keys(username_value)
     password.send_keys(password_value)
-
+    time.sleep(3)
     log_in = WebDriverWait(driver, 15).until(EC.element_to_be_clickable((By.CSS_SELECTOR, "button[type=submit]"))).click()
 
 
