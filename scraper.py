@@ -1,6 +1,7 @@
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
+from selenium.webdriver import ActionChains
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
@@ -29,10 +30,11 @@ def main():
 
     with open("captions.txt", "w", encoding="utf-8") as file:
         for post_url in posts.values():
-            caption = get_post_data(driver, post_url)
+            post_data = get_post_data(driver, post_url)
             # Write the caption and link to the file
             file.write(f"Post URL: {post_url}\n")
-            file.write(f"Caption: {caption}\n")
+            file.write(f"Caption: {post_data["caption_text"]}\n")
+            file.write(f"Image Text: {post_data["image_text"]}\n")
             file.write("-" * 50 + "\n")  # Separator for readability
 
     driver.quit()
@@ -40,14 +42,20 @@ def main():
 def get_post_data(driver, post_url):
     driver.get(post_url)
 
-    time.sleep(5)    
-    input()
+    time.sleep(5)
+    ActionChains(driver).send_keys(Keys.ESCAPE).perform()
     caption_element = driver.find_element(By.XPATH, "/html/body/div[1]/div/div/div[2]/div/div/div[1]/div[1]/div[1]/section/main/div[2]/div[1]/article/div/div[2]/div/div[2]/div[1]/ul/div[1]/li/div/div/div[2]")
 
-    
+    image = driver.find_element(By.TAG_NAME, "img")
+
+    image_text = image.get_attribute('alt')
+
     # Extract and print the caption text
     caption_text = caption_element.text
-    return caption_text
+    
+    post_data = {"caption_text" : caption_text, "image_text" : image_text}
+    
+    return post_data
 
 
 # sign in if necessary
