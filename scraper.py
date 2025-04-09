@@ -42,19 +42,36 @@ def main():
 def get_post_data(driver, post_url):
     driver.get(post_url)
 
-    time.sleep(5)
+    time.sleep(4)
     ActionChains(driver).send_keys(Keys.ESCAPE).perform()
+    time.sleep(2)
+
+    # Locate the caption element
     caption_element = driver.find_element(By.XPATH, "/html/body/div[1]/div/div/div[2]/div/div/div[1]/div[1]/div[1]/section/main/div[2]/div[1]/article/div/div[2]/div/div[2]/div[1]/ul/div[1]/li/div/div/div[2]")
 
+    # Locate the image element
     image = driver.find_element(By.TAG_NAME, "img")
 
+    # Get the image alt text and source URL
     image_text = image.get_attribute('alt')
+    image_source = image.get_attribute('src')
+
+    # Create a directory for saving photos if it doesn't exist
+    photos_dir = os.path.join(os.getcwd(), "photos")
+    os.makedirs(photos_dir, exist_ok=True)
+
+    # Generate a valid file name for the image
+    post_id = post_url.split("/")[-2]  # Extract the post ID from the URL
+    image_file_path = os.path.join(photos_dir, f"{post_id}.jpg")
+
+    # Download the image
+    wget.download(image_source, image_file_path)
 
     # Extract and print the caption text
     caption_text = caption_element.text
-    
-    post_data = {"caption_text" : caption_text, "image_text" : image_text}
-    
+
+    # Return the post data
+    post_data = {"caption_text": caption_text, "image_text": image_text}
     return post_data
 
 
