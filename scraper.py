@@ -8,7 +8,7 @@ from selenium.webdriver.support.ui import WebDriverWait
 from dotenv import load_dotenv
 import os
 import time
-import wget
+import requests
 
 load_dotenv()
 
@@ -65,7 +65,11 @@ def get_post_data(driver, post_url):
     image_file_path = os.path.join(photos_dir, f"{post_id}.jpg")
 
     # Download the image
-    wget.download(image_source, image_file_path)
+    response = requests.get(image_source, stream=True)
+    if response.status_code == 200:
+        with open(image_file_path, 'wb') as file:
+            for chunk in response.iter_content(1024):
+                file.write(chunk)
 
     # Extract and print the caption text
     caption_text = caption_element.text
