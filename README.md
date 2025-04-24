@@ -39,7 +39,7 @@ pip install -r /path/to/requirements.txt
 
 #### 4. Set up environment variables:
 
-Create a .env file in the project root and add the following:
-&nbsp;&nbsp;&nbsp;&nbsp;INSTAGRAM_USERNAME=your_instagram_username
-&nbsp;&nbsp;&nbsp;&nbsp;INSTAGRAM_PASSWORD=your_instagram_password
-&nbsp;&nbsp;&nbsp;&nbsp;APIFY_KEY=your_apify_api_key
+Create a .env file in the project root and add the following:    
+INSTAGRAM_USERNAME=your_instagram_username <br />
+INSTAGRAM_PASSWORD=your_instagram_password <br />
+APIFY_KEY=your_apify_api_key
