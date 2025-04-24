@@ -20,11 +20,11 @@ This project is aimed to proivde a platform to grab local shows off of social me
 #### 1. Clone the repository:
 
 ```
-git clone https://github.com/your-username/Local_Show_Scraper.git
+git clone https://github.com/IsraelSerrano/Local_Show_Scraper
 cd Local_Show_Scraper
 ```
 
-#### 2. (Recommended) Intialize a virtual environment
+#### 2. (Recommended) Initialize a virtual environment
 
 ```
 python3 -m venv venv
