@@ -14,7 +14,7 @@ post_urls = ["https://www.instagram.com/p/DGUevIzR7E2/", "https://www.instagram.
 run_input = {
     "directUrls": post_urls,  # Direct URLs of the Instagram posts
     "resultsType": "posts",  # We want post data
-    "resultsLimit": len(post_urls),  # Limit results to the number of posts
+    "resultsLimit": 10,  # Limit results to the number of posts
     "addParentData": False,  # No need for parent data
 }
 
