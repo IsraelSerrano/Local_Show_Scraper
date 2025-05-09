@@ -1,0 +1,5 @@
+Fix manual scraper to grab the followers of the dummy account
+Implement image scraper to do a second pass of the image to get data from Instagram
+Implement some sort of algorithm that is able to check if something is indeed a show post or a random account post
+improve gui layout and features
+Find way to circumvent the account locking faced when signing in too many times on Instagram
