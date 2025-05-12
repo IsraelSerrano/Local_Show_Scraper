@@ -176,3 +176,5 @@ cython_debug/
 captions.txt
 
 /photos
+
+example_input.txt
