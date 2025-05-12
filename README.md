@@ -1,4 +1,4 @@
-# Local Show ABAC Scraper
+# Local Show Scraper
 
 This project is aimed to proivde a platform to grab local shows off of social media and store them in a database to proivde a singular place to find all these shows.
 
